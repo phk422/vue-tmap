@@ -1,4 +1,4 @@
-import { Slots, onUnmounted, render } from 'vue';
+import { Slots, onUnmounted, render, watch } from 'vue';
 
 type ClusterBubbleOptions = TMap.DOMOverlayOptions & {
   position: TMap.LatLng;
@@ -165,8 +165,22 @@ export default function(
       markerGeometries.map((item) => (item as any).geometries[0]),
     );
   });
-  onUnmounted(() => {
+
+  function clear() {
     clusterBubbleList.forEach((item) => (item as any).destroy());
     markers.forEach((item) => (item as any).destroy());
+  }
+
+  watch(
+    () => props.geometries,
+    (geometries: TMap.PointGeometry[]) => {
+      if (!geometries || geometries.length === 0) {
+        clear();
+      }
+    },
+  );
+
+  onUnmounted(() => {
+    clear();
   });
 }
