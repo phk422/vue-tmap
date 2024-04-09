@@ -123,6 +123,10 @@ export default defineComponent({
       }>,
       default: () => ({ scale: {}, zoom: {}, rotation: {} }),
     },
+    showControl: {
+      type: Boolean,
+      default: true,
+    },
     events: {
       type: Object as PropType<{ [key: string]: Function }>,
       default: () => ({}),
@@ -183,7 +187,7 @@ export default defineComponent({
           mapStyleId: props.mapStyleId,
           baseMap: props.baseMap,
           viewMode: props.viewMode,
-          showControl: true,
+          showControl: props.showControl,
         });
 
         setMapCtrl(
@@ -298,7 +302,6 @@ export default defineComponent({
     watchEffect(() => {
       if (latlngBounds.value) {
         props.includePoints.forEach((item) => {
-          console.log(item);
           if (latlngBounds.value) {
             latlngBounds.value.extend(new TMap.LatLng(item.lat, item.lng));
           }
