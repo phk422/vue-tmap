@@ -10,6 +10,7 @@ import InfoWindow from './components/info-window';
 import PolygonEditor from './components/polygon-editor';
 // import GeometryEditor from './components/geometry-editor';
 import DOMOverlay from './components/dom-overlay';
+import MeasureTool from './components/measure-tool';
 
 const components = [
   TMap,
@@ -23,6 +24,7 @@ const components = [
   PolygonEditor,
   // GeometryEditor,
   DOMOverlay,
+  MeasureTool,
 ];
 
 const install: Plugin = (Vue: App) => {

@@ -7,6 +7,7 @@
     :doubleClickZoom="doubleClickZoom"
     :control="control"
   >
+    <tmap-measure-tool :type="measureType" />
     <div class="ctrl">
       <button @click.stop="move({ lat: 30.290756, lng: 120.074387 })">
         杭州
@@ -22,6 +23,12 @@
       </button>
       <button @click.stop="toggleDoubleClickZoom(!doubleClickZoom)">
         toggleDoubleClickZoom: {{ doubleClickZoom }}
+      </button>
+      <button @click.stop="measureType = 'distance'">
+        测量距离
+      </button>
+      <button @click.stop="measureType = 'area'">
+        测量面积
       </button>
     </div>
   </tmap-map>
@@ -46,6 +53,7 @@ export default defineComponent({
       console.log(e);
     };
     return {
+      measureType: ref(''),
       center,
       zoom,
       doubleClickZoom,

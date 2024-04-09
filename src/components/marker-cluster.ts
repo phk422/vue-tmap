@@ -1,4 +1,5 @@
 import { defineComponent, inject, Ref, watch, PropType, toRaw } from 'vue';
+import useMarkerClusterStyle from '../composables/use-marker-cluster-style';
 import { buildGeometries } from './multi-marker';
 
 export default defineComponent({
@@ -36,15 +37,19 @@ export default defineComponent({
       type: Number,
       default: 20,
     },
+    markerStyle: {
+      type: Object as PropType<TMap.MarkerStyle>,
+    },
   },
-  setup(props) {
+  emits: ['change'],
+  setup(props, { slots, emit }) {
     const map = inject<Ref<TMap.Map>>('map');
-    if (!map) {
-      return {};
-    }
-    const markers = new TMap.MarkerCluster({
+    if (!map) return {};
+    const mapRaw = toRaw(map.value);
+
+    const markerCluster = new TMap.MarkerCluster({
       id: props.id,
-      map: toRaw(map.value),
+      map: mapRaw,
       enableDefaultStyle: props.enableDefaultStyle,
       minimumClusterSize: props.minimumClusterSize,
       geometries: buildGeometries(props.geometries),
@@ -56,9 +61,12 @@ export default defineComponent({
     watch(
       () => props.geometries,
       (geometries) => {
-        markers.setGeometries(buildGeometries(geometries));
+        markerCluster.setGeometries(buildGeometries(geometries));
       },
     );
+    if (!props.enableDefaultStyle) {
+      useMarkerClusterStyle(markerCluster, mapRaw, props, emit, slots);
+    }
     return {};
   },
   render() {

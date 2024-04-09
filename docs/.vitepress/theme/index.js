@@ -6,6 +6,7 @@ import MultiPolygon from '../../../src/examples/multi-polygon.vue';
 // import HugePolygon from '../../../src/examples/huge-polygon.vue';
 import MultiMarker from '../../../src/examples/multi-marker.vue';
 import MarkerCluster from '../../../src/examples/marker-cluster.vue';
+import MarkerClusterStyle from '../../../src/examples/marker-cluster-style.vue';
 import MultiCircle from '../../../src/examples/multi-circle.vue';
 import MultiLabel from '../../../src/examples/multi-label.vue';
 import InfoWindow from '../../../src/examples/info-window.vue';
@@ -25,6 +26,7 @@ export default {
     app.component('DemoMultiPolygon', MultiPolygon);
     // app.component('DemoHugePolygon', HugePolygon);
     app.component('DemoMultiMarker', MultiMarker);
+    app.component('DemoMultiMarkerStyle', MarkerClusterStyle);
     app.component('DemoMarkerCluster', MarkerCluster);
     app.component('DemoMultiCircle', MultiCircle);
     app.component('DemoMultiLabel', MultiLabel);

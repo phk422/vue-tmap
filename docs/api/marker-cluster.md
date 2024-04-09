@@ -4,7 +4,14 @@
 ## 基础示例
 <div style="height:400px"><DemoMarkerCluster/></div>
 
+
 <<< src/examples/marker-cluster.vue
+
+## 自定义聚合样式
+
+<div style="height:400px"><DemoMultiMarkerStyle/></div>
+
+<<< src/examples/marker-cluster-style.vue
 
 ## props
 

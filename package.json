@@ -1,6 +1,6 @@
 {
-  "name": "@map-component/vue-tmap",
-  "version": "1.0.1",
+  "name": "vue3-tmap-new",
+  "version": "1.0.16",
   "description": "基于腾讯地图 JavaScript API GL、TypeScript 封装适用于 Vue3 的高性能地图组件库",
   "license": "MIT",
   "repository": {
@@ -65,9 +65,9 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "typescript": "^4.6.4",
-    "vite": "^2.9.8",
+    "vite": "^5.2.7",
     "vite-plugin-dts": "^1.5.0",
     "vitepress": "^0.22.4",
-    "vue": "^3.1.0"
+    "vue": "^3.2.37"
   }
 }

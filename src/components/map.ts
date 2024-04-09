@@ -271,6 +271,14 @@ export default defineComponent({
         );
       },
     );
+    watch(
+      () => props.baseMap,
+      (value) => {
+        if (value && mapIns) {
+          mapIns.setBaseMap(value);
+        }
+      },
+    );
     provide('map', map);
     return {
       map,
