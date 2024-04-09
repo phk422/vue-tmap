@@ -1,4 +1,13 @@
-import { PropType, Ref, defineComponent, inject, ref, toRaw, watch } from 'vue';
+import {
+  PropType,
+  Ref,
+  defineComponent,
+  inject,
+  onUnmounted,
+  ref,
+  toRaw,
+  watch,
+} from 'vue';
 
 export default defineComponent({
   name: 'tmap-measure-tool',
@@ -25,12 +34,14 @@ export default defineComponent({
     });
     const measure = async () => {
       if (!props.enable) return;
+      await measureTool.value.enable();
       let res;
       if (props.type === 'distance') {
         res = await measureTool.value.measureDistance();
       } else if (props.type === 'area') {
         res = await measureTool.value.measureArea();
       } else {
+        measureTool.value.disable();
         return;
       }
       emit('end', res);
@@ -53,6 +64,9 @@ export default defineComponent({
         }
       },
     );
+    onUnmounted(() => {
+      measureTool.value.disable();
+    });
   },
   render() {
     return null;
