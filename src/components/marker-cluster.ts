@@ -1,4 +1,12 @@
-import { defineComponent, inject, Ref, watch, PropType, toRaw } from 'vue';
+import {
+  defineComponent,
+  inject,
+  Ref,
+  watch,
+  PropType,
+  toRaw,
+  onUnmounted,
+} from 'vue';
 import useMarkerClusterStyle from '../composables/use-marker-cluster-style';
 import { buildGeometries } from './multi-marker';
 
@@ -67,6 +75,10 @@ export default defineComponent({
     if (!props.enableDefaultStyle) {
       useMarkerClusterStyle(markerCluster, mapRaw, props, emit, slots);
     }
+
+    onUnmounted(() => {
+      markerCluster.setMap(null);
+    });
     return {};
   },
   render() {
