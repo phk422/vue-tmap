@@ -7,6 +7,7 @@ import {
   h,
   PropType,
   watch,
+  watchEffect,
 } from 'vue';
 import loadSDK from '../utils/loadSDK';
 
@@ -126,18 +127,33 @@ export default defineComponent({
       type: Object as PropType<{ [key: string]: Function }>,
       default: () => ({}),
     },
+    includePoints: {
+      type: Array as PropType<TMap.LatLng[]>,
+      default: () => [],
+    },
+    fitBoundsOptions: {
+      type: Object as PropType<TMap.FitBoundsOptions>,
+      default: () => ({
+        padding: { top: 60, bottom: 60, left: 60, right: 60 },
+        ease: { duration: 0 },
+      }),
+    },
   },
   setup(props) {
     const el = ref<HTMLElement | null>(null);
     const map = ref<TMap.Map | null>(null);
+    const latlngBounds = ref<TMap.LatLngBounds | null>();
     let mapIns: TMap.Map;
     let positionMap: PositionMap;
+
     const events: string[] = [];
     Object.keys(props.events).forEach((eventName) => {
       events.push(eventName);
     });
     onMounted(async () => {
       await loadSDK(props.version, props.mapKey, props.libraries);
+      // @ts-ignore
+      latlngBounds.value = new TMap.LatLngBounds();
       positionMap = {
         topLeft: TMap.constants.CONTROL_POSITION.TOP_LEFT,
         topCenter: TMap.constants.CONTROL_POSITION.TOP_CENTER,
@@ -279,6 +295,19 @@ export default defineComponent({
         }
       },
     );
+    watchEffect(() => {
+      if (latlngBounds.value) {
+        props.includePoints.forEach((item) => {
+          console.log(item);
+          if (latlngBounds.value) {
+            latlngBounds.value.extend(new TMap.LatLng(item.lat, item.lng));
+          }
+        });
+        if (!latlngBounds.value.isEmpty()) {
+          mapIns.fitBounds(latlngBounds.value, props.fitBoundsOptions);
+        }
+      }
+    });
     provide('map', map);
     return {
       map,

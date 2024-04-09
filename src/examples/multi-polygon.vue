@@ -2,6 +2,7 @@
   <tmap-map
     mapKey="TOZBZ-OU2CX-JJP4Z-7FCBV-CDDJ2-AHFQZ"
     :doubleClickZoom="false"
+    :includePoints="geometries[0].paths"
   >
     <tmap-multi-polygon
       :id="id"

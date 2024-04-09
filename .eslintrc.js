@@ -15,6 +15,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'max-classes-per-file': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
     'func-names': 'off'
   },
   overrides: [
