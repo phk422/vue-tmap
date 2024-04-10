@@ -146,6 +146,8 @@ export default defineComponent({
       union: editor.union.bind(editor),
       delete: editor.delete.bind(editor),
       destroy: editor.destroy.bind(editor),
+      disable: (editor as any).disable.bind(editor),
+      enable: (editor as any).enable.bind(editor),
     };
   },
   render() {

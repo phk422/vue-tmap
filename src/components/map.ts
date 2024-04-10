@@ -324,7 +324,7 @@ export default defineComponent({
       'div',
       {
         class: this.class,
-        style: { ...this.style, height: '100%', width: '100%' },
+        style: { height: '100%', width: '100%', ...this.style },
         ref: 'el',
       },
       this.$slots.default && this.map ? this.$slots.default() : [],
