@@ -26,9 +26,7 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const map = inject<Ref<TMap.Map>>('map');
-    console.log(map, 'map');
     const measureTool = ref();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     measureTool.value = new (TMap.tools as any).MeasureTool({
       map: toRaw(map?.value),
     });
