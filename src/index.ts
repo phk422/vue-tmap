@@ -29,7 +29,7 @@ const components = [
 
 const install: Plugin = (Vue: App) => {
   components.forEach((Component) => {
-    Vue.component(Component.name, Component);
+    Vue.component(Component.name!, Component);
   });
 };
 
@@ -45,5 +45,6 @@ export {
   PolygonEditor,
   // GeometryEditor,
   DOMOverlay,
+  MeasureTool,
 };
 export default install;

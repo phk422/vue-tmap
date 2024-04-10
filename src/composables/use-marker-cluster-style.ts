@@ -139,22 +139,11 @@ export default function(
       });
     } else if (marker) {
       marker.setGeometries(markerGeometries);
-    } else {
+    } else if (props.markerStyle) {
       marker = new TMap.MultiMarker({
         map,
         styles: {
-          default: new TMap.MarkerStyle(
-            props.markerStyle || {
-              width: 34,
-              height: 42,
-              anchor: {
-                x: 17,
-                y: 21,
-              },
-              src:
-                'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/marker_blue.png',
-            },
-          ),
+          default: new TMap.MarkerStyle(props.markerStyle),
         },
         geometries: markerGeometries,
       } as never);
