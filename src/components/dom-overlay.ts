@@ -102,6 +102,7 @@ export default defineComponent({
         map: map.value,
         ele: domRef.value,
       });
+      domIns.updateDOM();
     });
 
     watch(

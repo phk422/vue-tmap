@@ -1,6 +1,6 @@
 {
   "name": "vue3-tmap-new",
-  "version": "1.0.32",
+  "version": "1.0.36",
   "description": "基于腾讯地图 JavaScript API GL、TypeScript 封装适用于 Vue3 的高性能地图组件库",
   "license": "MIT",
   "repository": {
