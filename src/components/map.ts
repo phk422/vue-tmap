@@ -146,7 +146,6 @@ export default defineComponent({
   setup(props) {
     const el = ref<HTMLElement | null>(null);
     const map = ref<TMap.Map | null>(null);
-    const latlngBounds = ref<TMap.LatLngBounds | null>();
     let mapIns: TMap.Map;
     let positionMap: PositionMap;
 
@@ -156,8 +155,6 @@ export default defineComponent({
     });
     onMounted(async () => {
       await loadSDK(props.version, props.mapKey, props.libraries);
-      // @ts-ignore
-      latlngBounds.value = new TMap.LatLngBounds();
       positionMap = {
         topLeft: TMap.constants.CONTROL_POSITION.TOP_LEFT,
         topCenter: TMap.constants.CONTROL_POSITION.TOP_CENTER,
@@ -300,14 +297,17 @@ export default defineComponent({
       },
     );
     watchEffect(() => {
-      if (latlngBounds.value) {
-        props.includePoints.forEach((item) => {
-          if (latlngBounds.value) {
-            latlngBounds.value.extend(new TMap.LatLng(item.lat, item.lng));
+      if (map.value) {
+        const latlngBounds = new TMap.LatLngBounds();
+        if (latlngBounds) {
+          props.includePoints.forEach((item) => {
+            if (latlngBounds) {
+              latlngBounds.extend(new TMap.LatLng(item.lat, item.lng));
+            }
+          });
+          if (!latlngBounds.isEmpty()) {
+            mapIns.fitBounds(latlngBounds, props.fitBoundsOptions);
           }
-        });
-        if (!latlngBounds.value.isEmpty()) {
-          mapIns.fitBounds(latlngBounds.value, props.fitBoundsOptions);
         }
       }
     });
