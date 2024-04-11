@@ -110,6 +110,9 @@ export default defineComponent({
       () => {
         domIns.updateDOM();
       },
+      {
+        flush: 'post',
+      },
     );
 
     onUnmounted(() => {
