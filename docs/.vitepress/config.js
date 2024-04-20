@@ -46,6 +46,7 @@ function getGuideSidebar() {
         { text: '文本标注', link: '/api/multi-label' },
         { text: 'DOM覆盖物', link: '/api/dom-overlay' },
         { text: '信息提示窗', link: '/api/info-window' },
+        { text: '热力图', link: '/api/heatmap' },
       ],
     },
   ];

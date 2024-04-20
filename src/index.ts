@@ -11,6 +11,7 @@ import PolygonEditor from './components/polygon-editor';
 // import GeometryEditor from './components/geometry-editor';
 import DOMOverlay from './components/dom-overlay';
 import MeasureTool from './components/measure-tool';
+import Heatmap from './components/heatmap';
 
 const components = [
   TMap,
@@ -25,6 +26,7 @@ const components = [
   // GeometryEditor,
   DOMOverlay,
   MeasureTool,
+  Heatmap,
 ];
 
 const install: Plugin = (Vue: App) => {
@@ -46,5 +48,6 @@ export {
   // GeometryEditor,
   DOMOverlay,
   MeasureTool,
+  Heatmap,
 };
 export default install;

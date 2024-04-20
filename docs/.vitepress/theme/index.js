@@ -13,6 +13,7 @@ import InfoWindow from '../../../src/examples/info-window.vue';
 import DomOverlay from '../../../src/examples/dom-overlay.vue';
 import PlayBack from '../../../src/examples/play-back.vue';
 import PolygonEditor from '../../../src/examples/polygon-editor.vue';
+import Heatmap from '../../../src/examples/heatmap.vue';
 
 export default {
   ...theme,
@@ -34,5 +35,6 @@ export default {
     app.component('DemoDomOverlay', DomOverlay);
     app.component('DemoPlayBack', PlayBack);
     app.component('DemoPolygonEditor', PolygonEditor);
+    app.component('DemoHeatmap', Heatmap);
   },
 };
