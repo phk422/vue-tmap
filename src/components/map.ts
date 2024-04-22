@@ -298,6 +298,7 @@ export default defineComponent({
     );
     watchEffect(() => {
       if (map.value) {
+        // @ts-ignore
         const latlngBounds = new TMap.LatLngBounds();
         if (latlngBounds) {
           props.includePoints.forEach((item) => {
